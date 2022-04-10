@@ -1,13 +1,9 @@
 const playerSelection = prompt('Type Rock, Paper, Scissors', '');
 
 function computerPlay() {
-    var values = ["Rock","Paper","Scissors"],
-        computerSelection = values[Math.floor(Math.random() * values.length)];
-    
-    return(computerSelection);
-}
-
-function game(output) {
+    var values = ["Rock","Paper","Scissors"];
+    var computerSelection = values[Math.floor(Math.random() * values.length)];
+ 
     if (playerSelection === computerSelection) {
         alert("No winner");
     } else if (playerSelection === "Paper" && computerSelection === "Scissors") {
@@ -18,7 +14,9 @@ function game(output) {
         alert("Computer wins!")
     } else {
         alert("Human wins!")
-    };
-    return(output);
-};
+    }
+    console.log(computerSelection);
+    console.log(playerSelection);
+}
 
+computerPlay();
