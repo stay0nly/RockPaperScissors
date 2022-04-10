@@ -1,16 +1,17 @@
-const playerSelection = prompt('Type Rock, Paper, Scissors', '');
+const pSelection = prompt('Type Rock, Paper, Scissors', '');
+const playerSelection = pSelection.toLowerCase();
 
-function computerPlay() {
-    var values = ["Rock","Paper","Scissors"];
+function playRound() {
+    var values = ["rock","paper","scissors"];
     var computerSelection = values[Math.floor(Math.random() * values.length)];
- 
+  
     if (playerSelection === computerSelection) {
         alert("No winner");
-    } else if (playerSelection === "Paper" && computerSelection === "Scissors") {
+    } else if (playerSelection === "paper" && computerSelection === "scissors") {
         alert("Computer wins!")
-    } else if (playerSelection === "Rock" && computerSelection === "Paper") {
+    } else if (playerSelection === "rock" && computerSelection === "paper") {
         alert("Computer wins!")
-    } else if (playerSelection === "Scissors" && computerSelection === "Rock") {
+    } else if (playerSelection === "scissors" && computerSelection === "rock") {
         alert("Computer wins!")
     } else {
         alert("Human wins!")
@@ -19,4 +20,8 @@ function computerPlay() {
     console.log(playerSelection);
 }
 
-computerPlay();
+function game() {
+    for (let i=0; i<5; i++) {
+        
+    }
+}
