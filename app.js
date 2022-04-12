@@ -4,14 +4,15 @@ const userScoreNumber = document.getElementById('human_score');
 const pcScoreNumber = document.getElementById('computer_score');
 const scores = document.querySelector('.scores');
 const result = document.querySelector('.result > p');
-const rockElement = document.getElementById('rock');
-const paperElement = document.getElementById('paper');
-const scissorsElement = document.getElementById('scissors');
+const rockElement = document.getElementById('Rock');
+const paperElement = document.getElementById('Paper');
+const scissorsElement = document.getElementById('Scissors');
+const resetElement = document.getElementById('reset');
 
 
 // Generating computer's choice
 function computerPlay() {
-    const values = ["rock","paper","scissors"];
+    const values = ["Rock","Paper","Scissors"];
     const computerSelection = values[Math.floor(Math.random() * 3)];
     return computerSelection;
 }
@@ -21,14 +22,20 @@ function win(playerSelection, computerSelection) {
     userScore++;
     userScoreNumber.innerHTML = userScore;
     result.innerHTML = playerSelection + " beats " + computerSelection + ". You Win! 😎"
+    document.getElementById(playerSelection).classList.add('win-light');
+    setTimeout(function(){ document.getElementById(playerSelection).classList.remove('win-light') }, 400);
 }
 function lose(playerSelection, computerSelection) {
     pcScore++;
     pcScoreNumber.innerHTML = pcScore;
     result.innerHTML = playerSelection + " beats " + computerSelection + ". You Lost! 😥"
+    document.getElementById(playerSelection).classList.add('lose-light');
+    setTimeout(function(){ document.getElementById(playerSelection).classList.remove('lose-light') }, 400);
 }
 function draw(playerSelection, computerSelection) {
     result.innerHTML = "😁 It's a Draw! 😁"
+    document.getElementById(playerSelection).classList.add('draw-light');
+    setTimeout(function(){ document.getElementById(playerSelection).classList.remove('draw-light') }, 400);
 }
 
 //Game
@@ -37,9 +44,9 @@ function game(playerSelection) {
     if (playerSelection === computerSelection) {
         draw(playerSelection, computerSelection);
     } else if (
-        (playerSelection === "paper" && computerSelection === "scissors") || 
-        (playerSelection === "rock" && computerSelection === "paper") ||
-        (playerSelection === "scissors" && computerSelection === "rock")) {
+        (playerSelection === "Paper" && computerSelection === "Scissors") || 
+        (playerSelection === "Rock" && computerSelection === "Paper") ||
+        (playerSelection === "Scissors" && computerSelection === "Rock")) {
         lose(playerSelection, computerSelection);          
     } else {
         win(playerSelection, computerSelection);
@@ -50,34 +57,28 @@ function game(playerSelection) {
 //Element click on the webpage
 function selection() {
 rockElement.addEventListener('click', function() {
-    game("rock");
+    game("Rock");
 });
 
 paperElement.addEventListener('click', function() {
-    game("paper");
+    game("Paper");
 });
 
 scissorsElement.addEventListener('click', function() {
-    game("scissors");
+    game("Scissors");
 });
 };
 
 selection();
 
+function resetScores() {
+    resetElement.addEventListener('click', function() {
+        pcScoreNumber.innerHTML = 0;
+        pcScore = 0;
+        userScoreNumber.innerHTML = 0;
+        userScore = 0;             
+    })
+}
 
-
-//One round play
-// function playRound(playerSelection, computerSelection) {
-//     if (playerSelection === computerSelection) {
-//         alert("DRAW!");
-//     } else if (
-//         (playerSelection === "paper" && computerSelection === "scissors") || 
-//         (playerSelection === "rock" && computerSelection === "paper") ||
-//         (playerSelection === "scissors" && computerSelection === "rock")) {
-//             alert("PC Wins!");          
-//     } else {
-//         alert("Human Wins!");
-//     }
-   
-// };
+resetScores();
 
